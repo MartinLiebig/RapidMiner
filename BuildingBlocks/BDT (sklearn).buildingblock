@@ -1,0 +1,8 @@
+BDT (sklearn)
+
+python.png
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<operator activated="true" class="python_scripting:execute_python" compatibility="6.5.000" expanded="true" height="76" name="BDT (sklearn)" width="90" x="447" y="30">
+  <parameter key="script" value="&#10;import pandas as pd&#10;from sklearn.ensemble import GradientBoostingClassifier&#10;&#10;# learn a random forest&#10;&#10;&#10;def rm_main(data):&#10;    meta =  data.rm_metadata&#10;&#10;    for attributename in meta.keys():&#10;        attributetype = meta[attributename][0]&#10;        attributerole = meta[attributename][1]&#10;        if attributerole == &quot;label&quot;:&#10;            label = attributename&#10;        # Drop all special attributes&#10;        elif attributerole is not None:&#10;            print attributerole&#10;            data = data.drop(attributename, axis=1)&#10;&#10;    # Create the Forest, for more options see&#10;    # http://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html&#10;&#10;    clf = GradientBoostingClassifier(&#10;        n_estimators=10,&#10;        max_features=&quot;sqrt&quot;)&#10;    # Learn it&#10;&#10;    clf.fit(data.drop(label, axis=1), data[label])&#10;&#10;    return clf, data&#10;"/>
+</operator>
+
